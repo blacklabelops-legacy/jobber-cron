@@ -49,7 +49,7 @@ RUN cd $JOBBER_LIB && \
     sudo chown jobber_client:root /usr/bin/jobber && \
     sudo chmod 4755 /usr/bin/jobber && \
     sudo cp $JOBBER_LIB/bin/jobberd /usr/bin/ && \
-    sudo chown root:root /usr/bin/ && \
-    sudo chmod 0755 /usr/bin/jobber
+    sudo chown root:root /usr/bin/jobberd && \
+    sudo chmod 0755 /usr/bin/jobberd
 
 CMD ["bash"]
