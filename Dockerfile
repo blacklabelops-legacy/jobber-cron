@@ -40,16 +40,9 @@ RUN mkdir -p $JOBBER_HOME && \
     chown -R $CONTAINER_UID:$CONTAINER_GID $JOBBER_HOME
 
 # compiling and installing jobber as user
-USER $CONTAINER_USER
+#USER $CONTAINER_USER
 RUN cd $JOBBER_LIB && \
     go get github.com/dshearer/jobber && \
-    make -C src/github.com/dshearer/jobber && \
-    sudo useradd --home / -M --system --shell /sbin/nologin jobber_client && \
-    sudo cp $JOBBER_LIB/bin/jobber /usr/bin/ && \
-    sudo chown jobber_client:root /usr/bin/jobber && \
-    sudo chmod 4755 /usr/bin/jobber && \
-    sudo cp $JOBBER_LIB/bin/jobberd /usr/bin/ && \
-    sudo chown root:root /usr/bin/jobberd && \
-    sudo chmod 0755 /usr/bin/jobberd
+    make -C src/github.com/dshearer/jobber install-bin DESTDIR=$JOBBER_HOME
 
-CMD ["bash"]
+CMD ["/opt/jobber/sbin/jobberd"]
