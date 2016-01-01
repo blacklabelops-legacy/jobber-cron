@@ -1,11 +1,11 @@
 FROM blacklabelops/centos
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
-# Propert permissions
-ENV CONTAINER_USER jobber
-ENV CONTAINER_UID 1000
-ENV CONTAINER_GROUP jobber
-ENV CONTAINER_GID 1000
+# Property permissions
+ENV CONTAINER_USER=jobber
+ENV CONTAINER_UID=1000
+ENV CONTAINER_GROUP=jobber
+ENV CONTAINER_GID=1000
 
 # install dev tools
 RUN yum install -y \
@@ -31,16 +31,14 @@ RUN yum install -y \
     echo "Defaults:$CONTAINER_USER !requiretty" >> /etc/sudoers
 
 # install Jobber
-ENV JOBBER_HOME /opt/jobber
-ENV JOBBER_LIB $JOBBER_HOME/lib
-ENV GOPATH $JOBBER_LIB
+ENV JOBBER_HOME=/opt/jobber
+ENV JOBBER_LIB=$JOBBER_HOME/lib
+ENV GOPATH=$JOBBER_LIB
 
 RUN mkdir -p $JOBBER_HOME && \
     mkdir -p $JOBBER_LIB && \
-    chown -R $CONTAINER_UID:$CONTAINER_GID $JOBBER_HOME
-
-# compiling and installing jobber as user
-RUN cd $JOBBER_LIB && \
+    chown -R $CONTAINER_UID:$CONTAINER_GID $JOBBER_HOME && \
+    cd $JOBBER_LIB && \
     go get github.com/dshearer/jobber && \
     make -C src/github.com/dshearer/jobber install-bin DESTDIR=$JOBBER_HOME
 
