@@ -1,0 +1,11 @@
+jobber:
+  image: blacklabelops/jobber
+  container_name: jobber
+  environment:
+    - 'JOB_NAME1=TestEcho'
+    - 'JOB_COMMAND1=echo hello world'
+    - 'JOB_TIME1=1'
+    - 'JOB_ON_ERROR1=Backoff'
+  labels:
+    com.blacklabelops.description: "Jobber Cron Container"
+    com.blacklabelops.service: "jobberd"
