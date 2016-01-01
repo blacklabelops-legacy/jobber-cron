@@ -1,5 +1,5 @@
 FROM blacklabelops/centos
-MAINTAINER Steffen Bleul <blacklabelops@itbleul.de>
+MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 # Propert permissions
 ENV CONTAINER_USER jobber
@@ -25,7 +25,7 @@ RUN yum install -y \
     vi  && \
     yum clean all && rm -rf /var/cache/yum/* && \
     /usr/sbin/groupadd --gid $CONTAINER_GID $CONTAINER_GROUP && \
-    /usr/sbin/useradd --uid $CONTAINER_UID --gid $CONTAINER_GID --create-home --home-dir /usr/bin/logrotate.d --shell /bin/bash $CONTAINER_GROUP && \
+    /usr/sbin/useradd --uid $CONTAINER_UID --gid $CONTAINER_GID --create-home --shell /bin/bash $CONTAINER_GROUP && \
     /usr/sbin/usermod -aG wheel $CONTAINER_USER && \
     echo "%wheel ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     echo "Defaults:$CONTAINER_USER !requiretty" >> /etc/sudoers
@@ -40,9 +40,11 @@ RUN mkdir -p $JOBBER_HOME && \
     chown -R $CONTAINER_UID:$CONTAINER_GID $JOBBER_HOME
 
 # compiling and installing jobber as user
-#USER $CONTAINER_USER
 RUN cd $JOBBER_LIB && \
     go get github.com/dshearer/jobber && \
     make -C src/github.com/dshearer/jobber install-bin DESTDIR=$JOBBER_HOME
 
-CMD ["/opt/jobber/sbin/jobberd"]
+USER $CONTAINER_USER
+COPY imagescripts/docker-entrypoint.sh /opt/jobber/docker-entrypoint.sh
+ENTRYPOINT ["/opt/jobber/docker-entrypoint.sh"]
+CMD ["jobberd"]
