@@ -7,33 +7,39 @@ if [ ! -f "${configfile}" ]; then
   touch ${configfile}
   cat > ${configfile} <<_EOF_
 ---
-- name: ${JOB_NAME}
-  cmd: trigger
-  time: ${JOB_TIME}
-  onError: Stop
-  notifyOnError: true
-  notifyOnFailure: true
+_EOF_
+  for (( i = 1; ; i++ ))
+  do
+    VAR_JOB_ON_ERROR="JOB_ON_ERROR$i"
+    VAR_JOB_NAME="JOB_NAME$i"
+    VAR_JOB_COMMAND="JOB_COMMAND$i"
+    VAR_JOB_TIME="JOB_TIME$i"
+
+    if [ ! -n "${!VAR_JOB_NAME}" ]; then
+      break
+    fi
+
+    it_job_on_error="Continue"
+    if [ -n "${!VAR_JOB_ON_ERROR}" ]; then
+      it_job_on_error=${!VAR_JOB_ON_ERROR}
+    fi
+    it_job_name=${!VAR_JOB_NAME}
+    it_job_time=${!VAR_JOB_TIME}
+    it_job_command=${!VAR_JOB_COMMAND}
+
+    cat >> ${configfile} <<_EOF_
+- name: ${it_job_name}
+  cmd: ${it_job_command}
+  time: ${it_job_time}
+  onError: ${it_job_on_error}
+  notifyOnError: false
+  notifyOnFailure: false
 
 _EOF_
+  done
 fi
 
 cat ${configfile}
-
-triggerfile="/home/jobber/trigger.sh"
-
-if [ ! -f "${triggerfile}" ]; then
-  touch ${triggerfile}
-  cat > ${triggerfile} <<_EOF_
-#!/bin/bash -x
-set -o errexit
-
-/bin/bash -c "${JOB_COMMAND}"
-_EOF_
-  chown jobber:jobber ${triggerfile}
-  chmod +x ${triggerfile}
-fi
-
-cat ${triggerfile}
 
 if [ "$1" = 'jobberd' ]; then
   sudo /opt/jobber/sbin/jobberd
