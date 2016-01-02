@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker version
+    - docker info
+    - docker build -t="blacklabelops/jobber" .
+
+test:
+  override:
+    - docker run -d --name="jobber" blacklabelops/jobber
+    - docker logs jobber
