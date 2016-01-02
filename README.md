@@ -1,4 +1,5 @@
-# JOBBER-CRON
+[![Circle CI](https://circleci.com/gh/blacklabelops/jobber-cron/tree/master.svg?style=shield)](https://circleci.com/gh/blacklabelops/jobber-cron/tree/master)
+[![Image Layers](https://badge.imagelayers.io/blacklabelops/jobber:latest.svg)](https://imagelayers.io/?images=blacklabelops/jobber:latest 'Get your own badge on imagelayers.io')
 
 Multi-Purpose container with cron alternative Jobber.
 
