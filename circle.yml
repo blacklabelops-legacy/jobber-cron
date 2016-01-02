@@ -13,4 +13,3 @@ test:
     - docker run -d --name="jobber" blacklabelops/jobber
     - docker logs jobber
     - docker stop jobber
-    - docker rm jobber
