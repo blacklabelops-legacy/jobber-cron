@@ -20,6 +20,7 @@ RUN yum install -y \
     golang \
     make \
     git \
+    rsync \
     mercurial \
     svn \
     vi  && \
