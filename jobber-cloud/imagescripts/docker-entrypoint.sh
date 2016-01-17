@@ -1,4 +1,5 @@
-#!/bin/bash -x
+#!/bin/bash
+
 set -o errexit
 
 source /opt/cloud/environment-amazonws.sh

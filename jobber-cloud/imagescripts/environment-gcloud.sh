@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 set -o errexit
 
@@ -11,3 +11,7 @@ fi
 if [ -n "${GCLOUD_ACCOUNT_FILE}" ]; then
   gcloud auth activate-service-account --key-file=${GCLOUD_ACCOUNT_FILE} ${GCLOUD_ACCOUNT_EMAIL}
 fi
+
+unset GCLOUD_ACCOUNT
+unset GCLOUD_ACCOUNT_FILE
+unset GCLOUD_ACCOUNT_EMAIL
