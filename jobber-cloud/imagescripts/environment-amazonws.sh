@@ -2,19 +2,18 @@
 
 set -o errexit
 
-if [ -n "${AWS_ACCESS_KEY_ID}" ] && [ -n "${AWS_SECRET_ACCESS_KEY}" ]; then
-  mkdir -p /root/.aws
-  cat > /root/.aws/config <<_EOF_
-[profile]
-output = json
-region = ${AWS_DEFAULT_REGION}
-_EOF_
-cat > /root/.aws/credentials <<_EOF_
-[default]
-aws_access_key_id = ${AWS_ACCESS_KEY_ID}
-aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}
-_EOF_
+if [ -n "${AWS_ACCESS_KEY_ID}" ]; then
+  aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}
+fi
+
+if [ -n "${AWS_SECRET_ACCESS_KEY}" ]; then
+  aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
+fi
+
+if  [ -n "${AWS_DEFAULT_REGION}" ]; then
+  aws configure set default.region ${AWS_DEFAULT_REGION}
 fi
 
 unset AWS_ACCESS_KEY_ID
 unset AWS_SECRET_ACCESS_KEY
+unset AWS_DEFAULT_REGION
