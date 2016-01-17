@@ -5,6 +5,7 @@ Supports:
 * Google Cloud (GCE)
 * Amazon Web Services (AWS)
 * Tutum
+* Docker (docker and docker-compose)
 
 # Make It Short!
 
@@ -193,6 +194,98 @@ As a reminder, cron timetable is like follows:
 1. Token: Day of Month
 1. Token: Month
 1. Token: Day of Week
+
+# Docker
+
+You will need a docker demon in order to enable docker cli or docker-compose. Simply mount your local docker demon or start one inside a linked container!
+
+Example mounting local docker demon:
+
+~~~~
+$ docker run -d \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -e "DOCKER_HOST=" \
+    -e "JOB_NAME1=TestEcho" \
+    -e "JOB_COMMAND1=docker images" \
+    -e "JOB_TIME1=1" \
+    -e "JOB_ON_ERROR1=Backoff" \
+    blacklabelops/cron-cloud
+~~~~
+
+> Will list local image list every minute.
+
+Example using separate docker demon container:
+
+Start a Docker demon container!
+
+~~~~
+$ docker run -d --privileged --name docker_demon docker:1.9.1-dind
+~~~~
+
+> The swarm-slave does not run a docker demon itself! We use the official Docker image to create one for all slaves.
+
+Now start the cron-cloud container!
+
+~~~~
+$ docker run -d \
+    --link docker_demon:docker \
+    -e "JOB_NAME1=TestEcho" \
+    -e "JOB_COMMAND1=docker version" \
+    -e "JOB_TIME1=1" \
+    -e "JOB_ON_ERROR1=Backoff" \
+    blacklabelops/cron-cloud
+~~~~
+
+> Will print the docker version every minute.
+
+## Docker Login
+
+The container can be started and login in a remote repository. The default is the dockerhub registry.
+
+With the environment variables:
+
+* DOCKER_REGISTRY_USER: Your account username for the registry. (mandatory)
+* DOCKER_REGISTRY_EMAIL: Your account email for the registry. (mandatory)
+* DOCKER_REGISTRY_PASSWORD: Your account password for the registry. (mandatory)
+
+Example:
+
+~~~~
+$ docker run -d \
+    --link docker_demon:docker \
+    -e "DOCKER_REGISTRY_USER=**Your_Account_Username**" \
+    -e "DOCKER_REGISTRY_EMAIL=**Your_Account_Email**" \
+    -e "DOCKER_REGISTRY_PASSWORD=**Your_Account_Password**" \
+    -e "JOB_NAME1=TestEcho" \
+    -e "JOB_COMMAND1=docker push blacklabelops/centos" \
+    -e "JOB_TIME1=1" \
+    -e "JOB_ON_ERROR1=Backoff" \
+    blacklabelops/cron-cloud
+~~~~
+
+> Will push the container to dockerhub every minute.
+
+## Changing the Docker registry
+
+The default for this container is dockerhub.io. If you want to use another remote repository, e.g. quay.io then Your_Account_Email can specify the repository with the environment variable DOCKER_REGISTRY.
+
+Example:
+
+~~~~
+$ docker run -d \
+    --link docker_demon:docker \
+    -e "DOCKER_REGISTRY=quay.io"
+    -e "DOCKER_REGISTRY_USER=**Your_Account_Username**" \
+    -e "DOCKER_REGISTRY_EMAIL=**Your_Account_Email**" \
+    -e "DOCKER_REGISTRY_PASSWORD=**Your_Account_Password**" \
+    -e "JOB_NAME1=TestEcho" \
+    -e "JOB_COMMAND1=docker push blacklabelops/centos" \
+    -e "JOB_TIME1=1" \
+    -e "JOB_ON_ERROR1=Backoff" \
+    blacklabelops/cron-cloud
+~~~~
+
+> Will push the container to quay.io every minute.
 
 # References
 
