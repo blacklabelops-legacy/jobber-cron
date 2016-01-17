@@ -6,9 +6,6 @@ USER root
 # Cloud Envs
 ENV SCRIPT_HOME=/opt/cloud
 
-RUN mkdir -p $SCRIPT_HOME && \
-    chown -R $CONTAINER_UID:$CONTAINER_GID $SCRIPT_HOME
-
 # install Amazon WS Cli
 ENV AWS_ACCESS_KEY_ID=
 ENV AWS_SECRET_ACCESS_KEY=
@@ -26,6 +23,9 @@ RUN mkdir -p /opt/gcloud && \
     /opt/google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/opt/gcloud/.bashrc --disable-installation-options && \
     gcloud --quiet components update app preview alpha beta app-engine-java app-engine-python kubectl bq core gsutil gcloud && \
     rm -rf /tmp/*
+
+# install tutum
+RUN pip install tutum
 
 COPY imagescripts /opt/cloud
 ENTRYPOINT ["/opt/cloud/docker-entrypoint.sh"]

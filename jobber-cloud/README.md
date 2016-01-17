@@ -1,13 +1,12 @@
 Multi-Purpose container with cron alternative Jobber.
 
-Work in Progress!
-
 Jobber cron alternative with cloud tools.
 
 Supports:
 
 * Google Cloud (GCE)
 * Amazon Web Services (AWS)
+* Tutum
 
 # Make It Short!
 
@@ -16,20 +15,49 @@ In short, you can define periodic tasks your cloud environments.
 Example:
 
 ~~~~
-$ docker run -d \
-    --name jobber \
+$ docker run -d --name cloudtask \
+    -e "TUTUM_USER=YOUR_USER" \
+    -e "TUTUM_PASS=YOUR_PASSWORD" \
     -e "JOB_NAME1=TestEcho" \
-    -e "JOB_COMMAND1=echo hello world" \
+    -e "JOB_COMMAND1=tutum service ps" \
+    -e "JOB_TIME1=1" \
+    -e "JOB_ON_ERROR1=Backoff" \
     blacklabelops/cron-cloud
 ~~~~
 
-> Will print "hello world" to console every second.
+> Will list your tutum services each minute.
 
 # How It Works
 
 This container is using blacklabelops/jobber for defining jobs. See this link for a comprehensive documentation: (blacklabelops/jobber)[https://github.com/blacklabelops/jobber-cron]
 
 The image also overs environment variables for authenticating yourself against your favourite cloud environment.
+
+# Tutum
+
+Required Environment Variables:
+
+* TUTUM_USER
+* TUTUM_PASS
+
+Optional Environment Variables:
+
+* TUTUM_APIKEY instead of TUTUM_PASS
+
+Example:
+
+~~~~
+$ docker run -d --name cloudtask \
+    -e "TUTUM_USER=YOUR_USER" \
+    -e "TUTUM_PASS=YOUR_PASSWORD" \
+    -e "JOB_NAME1=TestEcho" \
+    -e "JOB_COMMAND1=tutum service ps" \
+    -e "JOB_TIME1=1" \
+    -e "JOB_ON_ERROR1=Backoff" \
+    blacklabelops/cron-cloud
+~~~~
+
+> Will list your tutum services each minute.
 
 # Amazon Web Services AWS
 
@@ -167,26 +195,6 @@ As a reminder, cron timetable is like follows:
 1. Token: Day of Month
 1. Token: Month
 1. Token: Day of Week
-
-# Vagrant
-
-Vagrant is fabulous tool for pulling and spinning up virtual machines like docker with containers. I can configure my development and test environment and simply pull it online. And so can you! Install Vagrant and Virtualbox and spin it up. Change into the project folder and build the project on the spot!
-
-~~~~
-$ vagrant up
-$ vagrant ssh
-[vagrant@localhost ~]$ cd /vagrant
-[vagrant@localhost ~]$ docker-compose up
-~~~~
-
-> Type "docker logs jobber" in order to check the invocation.
-
-Vagrant does not leave any docker artifacts on your beloved desktop and the vagrant image can simply be destroyed and repulled if anything goes wrong. Test my project to your heart's content!
-
-First install:
-
-* [Vagrant](https://www.vagrantup.com/)
-* [Virtualbox](https://www.virtualbox.org/)
 
 # References
 
