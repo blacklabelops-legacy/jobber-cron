@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-configfile="/home/jobber/.jobber"
+configfile="/root/.jobber"
 
 if [ ! -f "${configfile}" ]; then
   touch ${configfile}
@@ -42,7 +42,7 @@ fi
 cat ${configfile}
 
 if [ "$1" = 'jobberd' ]; then
-  sudo /opt/jobber/sbin/jobberd
+  /opt/jobber/sbin/jobberd
 fi
 
 exec "$@"
