@@ -3,6 +3,8 @@ set -o errexit
 
 configfile="/root/.jobber"
 
+export >> /etc/profile.d/jobber.sh
+
 if [ ! -f "${configfile}" ]; then
   touch ${configfile}
   cat > ${configfile} <<_EOF_
