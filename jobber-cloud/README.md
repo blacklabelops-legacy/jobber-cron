@@ -31,6 +31,33 @@ This container is using blacklabelops/jobber for defining jobs. See this link fo
 
 The image also overs environment variables for authenticating yourself against your favourite cloud environment.
 
+# Amazon Web Services AWS
+
+Required Environment Variables:
+
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY
+
+Optional Environment Variables:
+
+* AWS_DEFAULT_REGION
+
+Simply put your credentials inside the environment variables and call:
+
+~~~~
+$ docker run -d --name cloudtask \
+    -e "AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY" \
+    -e "AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY" \
+    -e "AWS_DEFAULT_REGION=YOUR_REGION" \
+    -e "JOB_NAME1=TestListingBuckets" \
+    -e "JOB_COMMAND1=aws s3 ls" \
+    -e "JOB_TIME1=1" \
+    -e "JOB_ON_ERROR1=Backoff" \
+  blacklabelops/cron-cloud
+~~~~
+
+> Will list your buckets each minute.
+
 # Google Cloud API
 
 You can run commands against existing cloud projects!

@@ -27,7 +27,6 @@ RUN mkdir -p /opt/gcloud && \
     gcloud --quiet components update app preview alpha beta app-engine-java app-engine-python kubectl bq core gsutil gcloud && \
     rm -rf /tmp/*
 
-USER jobberd
 COPY imagescripts /opt/cloud
 ENTRYPOINT ["/opt/cloud/docker-entrypoint.sh"]
 CMD ["jobberd"]
