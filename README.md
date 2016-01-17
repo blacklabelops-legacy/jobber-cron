@@ -86,12 +86,12 @@ so you can see that you have to specify the time string from the back and the re
 
 As a reminder, cron timetable is like follows:
 
-1. Second
-1. Minute
-1. Hour
-1. Day of Month
-1. Month
-1. Day of Week
+1. Token: Second
+1. Token: Minute
+1. Token: Hour
+1. Token: Day of Month
+1. Token: Month
+1. Token: Day of Week
 
 # Vagrant
 

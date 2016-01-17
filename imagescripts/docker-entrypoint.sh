@@ -30,7 +30,7 @@ _EOF_
     cat >> ${configfile} <<_EOF_
 - name: ${it_job_name}
   cmd: ${it_job_command}
-  time: ${it_job_time}
+  time: '${it_job_time}'
   onError: ${it_job_on_error}
   notifyOnError: false
   notifyOnFailure: false
