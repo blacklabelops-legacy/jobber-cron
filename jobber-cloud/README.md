@@ -1,6 +1,4 @@
-Multi-Purpose container with cron alternative Jobber.
-
-Jobber cron alternative with cloud tools.
+Docker image for executing cron tasks against Tutum, Google Cloud and AmazonWS.
 
 Supports:
 
