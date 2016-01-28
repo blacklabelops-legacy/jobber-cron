@@ -11,4 +11,4 @@ if [ -n "${DELAYED_START}" ]; then
   sleep ${DELAYED_START}
 fi
 
-/opt/jobber/docker-entrypoint.sh $@
+/opt/jobber/docker-entrypoint.sh "$@"
