@@ -31,8 +31,8 @@ RUN mkdir -p $JOBBER_HOME && \
     mkdir -p $JOBBER_LIB && \
     chown -R $CONTAINER_UID:$CONTAINER_GID $JOBBER_HOME && \
     cd $JOBBER_LIB && \
-    go get github.com/blacklabelops/jobber && \
-    make -C src/github.com/blacklabelops/jobber install-bin DESTDIR=$JOBBER_HOME
+    go get github.com/blacklabelops/jobber && mv github.com/blacklabelops github.com/dshearer && \
+    make -C src/github.com/dshearer/jobber install-bin DESTDIR=$JOBBER_HOME
 
 COPY imagescripts/docker-entrypoint.sh /opt/jobber/docker-entrypoint.sh
 ENTRYPOINT ["/opt/jobber/docker-entrypoint.sh"]
