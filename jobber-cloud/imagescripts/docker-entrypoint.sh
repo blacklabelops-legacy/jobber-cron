@@ -2,12 +2,14 @@
 
 set -o errexit
 
-if [ -n "${CLOUD_GPG_PRIVATE_KEY}" ]; then
-  gpg --allow-secret-key-import --import ${CLOUD_GPG_PRIVATE_KEY}
-fi
+if [ ! -f "/root/.gnupg/pubring.gpg" ]; then
+  if [ -n "${CLOUD_GPG_PRIVATE_KEY}" ]; then
+    gpg --allow-secret-key-import --import ${CLOUD_GPG_PRIVATE_KEY}
+  fi
 
-if [ -n "${CLOUD_GPG_PUBLIC_KEY}" ]; then
-  gpg --import ${CLOUD_GPG_PUBLIC_KEY}
+  if [ -n "${CLOUD_GPG_PUBLIC_KEY}" ]; then
+    gpg --import ${CLOUD_GPG_PUBLIC_KEY}
+  fi
 fi
 
 source /opt/cloud/environment-amazonws.sh
