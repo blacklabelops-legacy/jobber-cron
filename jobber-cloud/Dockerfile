@@ -29,7 +29,6 @@ RUN pip install tutum
 
 # install Docker cli
 ENV DOCKER_VERSION 1.9.1
-ENV DOCKER_HOST tcp://docker:2375
 
 RUN curl -fSL "https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSION" -o /usr/local/bin/docker && \
     chmod +x /usr/local/bin/docker && \
