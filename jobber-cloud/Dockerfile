@@ -32,7 +32,7 @@ ENV DOCKER_VERSION 1.10.1
 
 RUN curl -fSL "https://get.docker.com/builds/Linux/x86_64/docker-$DOCKER_VERSION" -o /usr/local/bin/docker && \
     chmod +x /usr/local/bin/docker && \
-    pip install docker-compose && \
+    pip install docker-compose docker-cloud && \
     curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
     chmod +x /usr/local/bin/docker-machine
 
