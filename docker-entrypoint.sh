@@ -4,16 +4,13 @@ set -o errexit
 
 configfile="/root/.jobber"
 
-environmentfile="/etc/profile.d/jobber.sh"
-
 function pipeEnvironmentVariables() {
+  local environmentfile="/etc/profile.d/jobber.sh"
   cat > ${environmentfile} <<_EOF_
   #!/bin/sh
 _EOF_
-
   export >> ${environmentfile}
-
-  sed -i 's/declare -x/export/g' /etc/profile.d/jobber.sh
+  sed -i 's/declare -x/export/g' ${environmentfile}
 }
 
 if [ ! -f "${configfile}" ]; then
