@@ -4,7 +4,17 @@ set -o errexit
 
 configfile="/root/.jobber"
 
-export >> /etc/profile.d/jobber.sh
+environmentfile="/etc/profile.d/jobber.sh"
+
+function pipeEnvironmentVariables() {
+  cat > ${environmentfile} <<_EOF_
+  #!/bin/sh
+_EOF_
+
+  export >> ${environmentfile}
+
+  sed -i 's/declare -x/export/g' /etc/profile.d/jobber.sh
+}
 
 if [ ! -f "${configfile}" ]; then
   touch ${configfile}
@@ -45,7 +55,8 @@ fi
 cat ${configfile}
 
 if [ "$1" = 'jobberd' ]; then
-  /opt/jobber/sbin/jobberd
+  pipeEnvironmentVariables
+  jobberd
 fi
 
 exec "$@"
