@@ -3,13 +3,12 @@ MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 # Version argument latest or version number (e.g. 1.0.3)
 ARG JOBBER_VERSION=latest
-#Permissions, set the linux user id and group id
-ARG CONTAINER_UID=1000
-ARG CONTAINER_GID=1000
 
 RUN export JOBBER_HOME=/tmp/jobber && \
     export JOBBER_LIB=$JOBBER_HOME/lib && \
     export GOPATH=$JOBBER_LIB && \
+    export CONTAINER_UID=1000 && \
+    export CONTAINER_GID=1000 && \
     export CONTAINER_USER=jobber_client && \
     export CONTAINER_GROUP=jobber_client && \
     # Install tools
