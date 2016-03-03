@@ -4,6 +4,7 @@ MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 # install dev tools
 RUN yum install -y epel-release && \
     yum install -y \
+    docker \
     wget \
     curl \
     tar \
