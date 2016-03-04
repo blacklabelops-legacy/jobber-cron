@@ -17,7 +17,7 @@ dependencies:
     - docker build -t blacklabelops/cron-cloud -f jobber-cloud/Dockerfile jobber-cloud/
 
 test:
-  override
+  override:
     # Jobber
     - docker run -d --name jobber blacklabelops/jobber
     - docker logs jobber
