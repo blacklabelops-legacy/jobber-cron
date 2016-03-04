@@ -1,4 +1,4 @@
-FROM blacklabelops/jobber:alpine
+FROM blacklabelops/jobber
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 USER root
@@ -15,7 +15,6 @@ RUN apk add --update \
       rsync \
       py-pip \
       git \
-      rsync \
       mercurial && \
     pip install --upgrade pip
 

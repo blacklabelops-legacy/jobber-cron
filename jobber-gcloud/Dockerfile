@@ -1,4 +1,4 @@
-FROM blacklabelops/jobber:alpine
+FROM blacklabelops/jobber
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 USER root

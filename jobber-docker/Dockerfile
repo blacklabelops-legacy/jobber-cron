@@ -1,9 +1,9 @@
-FROM blacklabelops/jobber:alpine
+FROM blacklabelops/jobber
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 USER root
 
-ENV DOCKER_VERSION=1.10.1
+ENV DOCKER_VERSION=1.10.2
 
 RUN apk add --update \
       gpgme \
