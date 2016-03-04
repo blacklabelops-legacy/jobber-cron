@@ -1,9 +1,11 @@
-[![Circle CI](https://circleci.com/gh/blacklabelops/jobber-cron/tree/master.svg?style=shield)](https://circleci.com/gh/blacklabelops/jobber-cron/tree/master)
-[![Image Layers](https://badge.imagelayers.io/blacklabelops/jobber:latest.svg)](https://imagelayers.io/?images=blacklabelops/jobber:latest 'Get your own badge on imagelayers.io')
+# Dockerized Cron
 
-Multi-Purpose container with cron alternative Jobber.
+[![Circle CI](https://circleci.com/gh/blacklabelops/jobber-cron/tree/alpine.svg?style=shield)](https://circleci.com/gh/blacklabelops/jobber-cron/tree/alpine)
+[![Image Layers](https://badge.imagelayers.io/blacklabelops/jobber:alpine.svg)](https://imagelayers.io/?images=blacklabelops/jobber:alpine 'Get your own badge on imagelayers.io')
 
-This container has a large amount of tools installed in order to be useful without even extending it.
+Docker Cron alternative by Jobber.
+
+> Note: I removed the tools in order to achieve a minimal base image (around 28MB)!
 
 # Make It Short!
 

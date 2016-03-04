@@ -1,4 +1,4 @@
-Docker image for executing cron tasks against Tutum, Google Cloud and AmazonWS.
+# Dockerized CLIs For Cron Against Tutum, Google Cloud and AmazonWS.
 
 Supports:
 

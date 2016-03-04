@@ -1,7 +1,23 @@
-FROM blacklabelops/jobber
+FROM blacklabelops/jobber:alpine
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 USER root
+
+# install tools
+RUN apk add --update \
+      gpgme \
+      wget \
+      curl \
+      tar \
+      gzip \
+      zip \
+      unzip \
+      rsync \
+      py-pip \
+      git \
+      rsync \
+      mercurial && \
+    pip install --upgrade pip
 
 # Cloud Envs
 ENV SCRIPT_HOME=/opt/cloud
