@@ -10,7 +10,6 @@ function pipeEnvironmentVariables() {
   #!/bin/sh
 _EOF_
   export >> ${environmentfile}
-  sed -i 's/declare -x/export/g' ${environmentfile}
 }
 
 if [ ! -f "${configfile}" ]; then
