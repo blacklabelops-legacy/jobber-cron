@@ -9,7 +9,7 @@ function pipeEnvironmentVariables() {
   cat > ${environmentfile} <<_EOF_
   #!/bin/sh
 _EOF_
-  export >> ${environmentfile}
+  sh -c export >> ${environmentfile}
 }
 
 if [ ! -f "${configfile}" ]; then
