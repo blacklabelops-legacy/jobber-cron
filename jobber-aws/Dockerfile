@@ -18,8 +18,7 @@ RUN apk add --update \
     chmod +x /usr/local/bin/ecs-cli && \
     # Cleanup
     apk del \
-      curl \
-      py-pip && \
+      curl && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
 
 COPY imagescripts /opt/cloud
