@@ -52,7 +52,7 @@ cat ${configfile}
 
 if [ "$1" = 'jobberd' ]; then
   pipeEnvironmentVariables
-  jobberd
+  exec jobberd
 fi
 
 exec "$@"
