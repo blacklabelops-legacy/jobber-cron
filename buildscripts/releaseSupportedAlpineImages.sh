@@ -9,7 +9,7 @@ printf '%b\n' ":: Reading release config...."
 source $CUR_DIR/release.sh
 
 readonly PUSH_REPOSITORY=$1
-readonly PUSH_CONTAINER_VERSION=$CONTAINER_VERSION
+readonly PUSH_CONTAINER_VERSION=$JOBBER_VERSION
 
 function retagImage() {
   local tagname=$1
