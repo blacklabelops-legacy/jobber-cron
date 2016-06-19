@@ -1,8 +1,6 @@
 # Dockerized Jobber Cron
 
-[![Circle CI](https://circleci.com/gh/blacklabelops/jobber-cron/tree/alpine.svg?style=shield)](https://circleci.com/gh/blacklabelops/jobber-cron/tree/alpine)
 [![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/)
-[![Image Layers](https://badge.imagelayers.io/blacklabelops/jobber:alpine.svg)](https://imagelayers.io/?images=blacklabelops/jobber:alpine 'Get your own badge on imagelayers.io')
 
 > Docker Container Cron Alternative With Jobber.
 
@@ -10,17 +8,14 @@
 
 | Bundle | Version | Tags  | Dockerfile | Readme | Example |
 |--------|---------|-------|------------|--------|---------|
-| Jobber  | latest | latest | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/README.md) | blacklabelops/jobber:latest
+| Jobber  | latest, v1.1 | latest, v1.1 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/README.md) | blacklabelops/jobber:latest
 | Jobber + Tools  | latest | tools | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-tools/Dockerfile) | | blacklabelops/jobber:tools |
 | Jobber + Docker Tools | latest | docker | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/README.md) | blacklabelops/jobber:docker |
 | Jobber + AWS Cli | latest | aws | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/README.md) | blacklabelops/jobber:aws |
 | Jobber + GCE Cli | latest | gce | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:gce |
+| Jobber + All Above | latest | cloud | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:cloud |
 
 > AWS = Amazon Web Services, GCE = Google Cloud Engine
-
-## Everything Altogether In One Image!
-
-[blacklabelops/cron-cloud](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-cloud/README.md)
 
 # Make It Short!
 
@@ -98,6 +93,19 @@ You can also define just one number "1". This will be interpreted as
 ~~~~
 1 * * * * *
 ~~~~
+
+Example:
+
+~~~~
+$ docker run \
+    --name jobber \
+    -e "JOB_NAME1=TestEcho" \
+    -e "JOB_COMMAND1=echo hello world" \
+    -e "JOB_TIME1=1 * * * * *"
+    blacklabelops/jobber
+~~~~
+
+> Will print "hello world" every second.
 
 so you can see that you have to specify the time string from the back and the rest will be filled up by Jobber.
 
