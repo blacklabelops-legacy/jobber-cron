@@ -9,7 +9,7 @@ printf '%b\n' ":: Reading release config...."
 source $CUR_DIR/release.sh
 
 readonly PUSH_REPOSITORY=$1
-readonly PUSH_CONTAINER_VERSION=$CONTAINER_VERSION
+readonly PUSH_CONTAINER_VERSION=$JOBBER_VERSION
 
 function retagImage() {
   local tagname=$1
@@ -28,13 +28,13 @@ function pushImage() {
 
 pushImage latest $PUSH_REPOSITORY
 pushImage $PUSH_CONTAINER_VERSION $PUSH_REPOSITORY
-pushImage tools
-pushImage tools.$TEST_CONTAINER_VERSION
-pushImage aws
-pushImage aws.$TEST_CONTAINER_VERSION
-pushImage gce
-pushImage gce.$TEST_CONTAINER_VERSION
-pushImage docker
-pushImage docker.$TEST_CONTAINER_VERSION
-pushImage cloud
-pushImage cloud.$TEST_CONTAINER_VERSION
+pushImage tools $PUSH_REPOSITORY
+pushImage tools.$PUSH_CONTAINER_VERSION $PUSH_REPOSITORY
+pushImage aws $PUSH_REPOSITORY
+pushImage aws.$PUSH_CONTAINER_VERSION $PUSH_REPOSITORY
+pushImage gce $PUSH_REPOSITORY
+pushImage gce.$PUSH_CONTAINER_VERSION $PUSH_REPOSITORY
+pushImage docker $PUSH_REPOSITORY
+pushImage docker.$PUSH_CONTAINER_VERSION $PUSH_REPOSITORY
+pushImage cloud $PUSH_REPOSITORY
+pushImage cloud.$PUSH_CONTAINER_VERSION $PUSH_REPOSITORY
