@@ -12,7 +12,13 @@ readonly TEST_CONTAINER_VERSION=$JOBBER_VERSION
 
 function cleanContainer() {
   local container=$1
-  docker rm -f -v $container || true
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  if  [ "${branch}" = "master" ]; then
+    imagename=$tagname
+  else
+    imagename=$tagname-$branch
+  fi
+  docker rm -f -v $imagename || true
 }
 
 cleanContainer latest
