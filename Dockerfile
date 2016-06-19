@@ -15,6 +15,7 @@ RUN export JOBBER_HOME=/tmp/jobber && \
     apk add --update \
       go \
       git \
+      curl \
       wget \
       make && \
     mkdir -p $JOBBER_HOME && \
@@ -43,6 +44,7 @@ RUN export JOBBER_HOME=/tmp/jobber && \
     apk del \
       go \
       git \
+      curl \
       wget \
       make && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
