@@ -14,9 +14,9 @@ function cleanContainer() {
   local container=$1
   local branch=$(git rev-parse --abbrev-ref HEAD)
   if  [ "${branch}" = "master" ]; then
-    imagename=$tagname
+    imagename=$container
   else
-    imagename=$tagname-$branch
+    imagename=$container-$branch
   fi
   docker rm -f -v $imagename || true
 }
