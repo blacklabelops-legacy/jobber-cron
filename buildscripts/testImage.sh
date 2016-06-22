@@ -22,6 +22,7 @@ function testImage() {
     imagename=$tagname-$branch
   fi
   docker run -d --name=$imagename -e "JOB_NAME1=TestEcho" -e "JOB_COMMAND1=echo hello world" -e "JOB_TIME1=0 30 15 * * *" blacklabelops/jobber:$tagname
+  sleep 3
   docker exec $imagename jobber list
   docker exec $imagename jobber log
   docker exec $imagename jobber reload
