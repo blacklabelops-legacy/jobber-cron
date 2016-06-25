@@ -4,22 +4,22 @@ set -o errexit    # abort script at first error
 
 function testPrintVersion() {
   local tagname=$1
-  local branch=$(git rev-parse --abbrev-ref HEAD)
+  local branch=$BUILD_BRANCH
   if  [ "${branch}" = "master" ]; then
     imagename=$tagname
   else
-    imagename=$tagname-$branch
+    imagename=$tagname-development
   fi
   docker run --rm blacklabelops/jobber:$imagename jobber -v
 }
 
 function testImage() {
   local tagname=$1
-  local branch=$(git rev-parse --abbrev-ref HEAD)
+  local branch=$BUILD_BRANCH
   if  [ "${branch}" = "master" ]; then
     imagename=$tagname
   else
-    imagename=$tagname-$branch
+    imagename=$tagname-development
   fi
   docker run -d --name=$imagename -e "JOB_NAME1=TestEcho" -e "JOB_COMMAND1=echo hello world" -e "JOB_TIME1=0 30 15 * * *" blacklabelops/jobber:$tagname
   sleep 3

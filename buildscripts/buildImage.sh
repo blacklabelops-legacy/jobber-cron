@@ -5,12 +5,13 @@ set -o errexit    # abort script at first error
 function buildImage() {
   local tagname=$1
   local version=$2
-  local branch=$(git rev-parse --abbrev-ref HEAD)
+  local branch=$BUILD_BRANCH
   if  [ "${branch}" = "master" ]; then
-    docker build --no-cache -t blacklabelops/jobber:$tagname --build-arg JOBBER_VERSION=$version .
+    imagename=$tagname
   else
-    docker build --no-cache -t blacklabelops/jobber:$tagname-$branch --build-arg JOBBER_VERSION=$version .
+    imagename=$tagname-development
   fi
+  docker build --no-cache -t blacklabelops/jobber:$imagename --build-arg JOBBER_VERSION=$version .
 }
 
 buildImage $1 $2
