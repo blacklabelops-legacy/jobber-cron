@@ -1,7 +1,7 @@
 FROM alpine:3.3
 RUN apk upgrade --update && \
     apk add wget \
-      curl
+      ca-certificates
 
 ENV PKG_DIR     /pkgs
 
