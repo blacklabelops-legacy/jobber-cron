@@ -1,0 +1,12 @@
+FROM alpine:3.3
+RUN apk upgrade --update && \
+    apk add wget \
+      curl
+
+ENV PKG_DIR     /pkgs
+
+# NOTE: OpenRC doesn't work in a container
+CMD wget --directory-prefix=/pkgs https://github.com/dshearer/jobber/releases/download/v1.1/jobber-1.1-r0.x86_64.apk && \
+    apk add --allow-untrusted /pkgs/jobber-1.1-r0.x86_64.apk && \
+    (apk add --allow-untrusted "${PKG_DIR}"/*.apk ||:) && \
+    (/usr/libexec/jobberd&)
