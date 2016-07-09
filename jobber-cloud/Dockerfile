@@ -4,7 +4,7 @@ MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 USER root
 
 # install tools
-RUN apk add --repository http://dl-3.alpinelinux.org/alpine/edge/main --update \
+RUN apk add --update \
       gnupg \
       wget \
       curl \
