@@ -4,10 +4,6 @@ MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 USER root
 
 # install Amazon WS Cli
-ENV AWS_ACCESS_KEY_ID=
-ENV AWS_SECRET_ACCESS_KEY=
-ENV AWS_DEFAULT_REGION=
-ENV AWS_CLUSTER=
 RUN apk add --update \
       gpgme \
       curl \

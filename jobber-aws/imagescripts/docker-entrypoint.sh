@@ -12,8 +12,6 @@ if [ ! -f "/root/.gnupg/pubring.gpg" ]; then
   fi
 fi
 
-source /opt/cloud/environment-amazonws.sh
-
 if [ -n "${CLOUD_DELAYED_START}" ]; then
   sleep ${CLOUD_DELAYED_START}
 fi
