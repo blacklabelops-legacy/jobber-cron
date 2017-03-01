@@ -16,9 +16,9 @@ source $CUR_DIR/testImage.sh tools
 source $CUR_DIR/testImage.sh tools.$TEST_CONTAINER_VERSION
 source $CUR_DIR/testImage.sh aws
 source $CUR_DIR/testImage.sh aws.$TEST_CONTAINER_VERSION
-source $CUR_DIR/testImage.sh gce
-source $CUR_DIR/testImage.sh gce.$TEST_CONTAINER_VERSION
+#source $CUR_DIR/testImage.sh gce
+#source $CUR_DIR/testImage.sh gce.$TEST_CONTAINER_VERSION
 source $CUR_DIR/testImage.sh docker
 source $CUR_DIR/testImage.sh docker.$TEST_CONTAINER_VERSION
-source $CUR_DIR/testImage.sh cloud
-source $CUR_DIR/testImage.sh cloud.$TEST_CONTAINER_VERSION
+#source $CUR_DIR/testImage.sh cloud
+#source $CUR_DIR/testImage.sh cloud.$TEST_CONTAINER_VERSION

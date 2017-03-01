@@ -12,7 +12,6 @@ if [ ! -f "/root/.gnupg/pubring.gpg" ]; then
   fi
 fi
 
-source /opt/cloud/environment-amazonws.sh
 source /opt/cloud/environment-gcloud.sh
 source /opt/cloud/environment-tutum.sh
 source /opt/cloud/environment-docker.sh
