@@ -33,7 +33,7 @@ RUN mkdir -p /opt/gcloud && \
     wget --no-check-certificate --directory-prefix=/tmp/ https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip && \
     unzip /tmp/google-cloud-sdk.zip -d /opt/ && \
     /opt/google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/opt/gcloud/.bashrc --disable-installation-options && \
-    gcloud --quiet components update alpha beta app-engine-java app-engine-python kubectl bq core gsutil gcloud && \
+    gcloud --quiet components update alpha beta app-engine-python kubectl bq core gsutil gcloud && \
     rm -rf /tmp/*
 
 # install tutum
