@@ -17,6 +17,7 @@ RUN export JOBBER_HOME=/tmp/jobber && \
       git \
       curl \
       wget \
+      tzdata \
       make && \
     mkdir -p $JOBBER_HOME && \
     mkdir -p $JOBBER_LIB && \
