@@ -1,11 +1,20 @@
 jobber:
-  image: blacklabelops/jobber
+  build: .
   container_name: jobber
   environment:
-    - 'JOB_NAME1=TestEcho'
-    - 'JOB_COMMAND1=echo hello world'
-    - 'JOB_TIME1=1'
-    - 'JOB_ON_ERROR1=Backoff'
+    JOBS_NOTIFY_CMD: tee /log.txt
+    JOB_NAME1: TestEcho
+    JOB_COMMAND1: echo hello world
+    JOB_TIME1: "*/45 * * * * *"
+    # JOB_ON_ERROR1: Backoff
+    # JOB_NOTIFY_ERR1: 'true'
+    # JOB_NOTIFY_FAIL1: 'true'
+    JOB_NAME2: TestFail
+    JOB_COMMAND2: cat 'hello world'
+    JOB_TIME2: "*/60 * * * * *"
+    JOB_ON_ERROR2: Backoff
+    JOB_NOTIFY_ERR2: 'true'
+
   labels:
     com.blacklabelops.description: "Jobber Cron Container"
     com.blacklabelops.service: "jobberd"
