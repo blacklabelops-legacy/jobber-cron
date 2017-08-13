@@ -6,6 +6,7 @@ USER root
 RUN apk add --update \
       gpgme \
       wget \
+      jq \
       curl \
       tar \
       gzip \
