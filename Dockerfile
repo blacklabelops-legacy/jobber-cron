@@ -2,7 +2,7 @@ FROM blacklabelops/alpine:3.4
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 # build parameters
-ARG JOBBER_VERSION=v1.1
+ARG JOBBER_VERSION=v1.2
 
 RUN export JOBBER_HOME=/tmp/jobber && \
     export JOBBER_LIB=$JOBBER_HOME/lib && \
