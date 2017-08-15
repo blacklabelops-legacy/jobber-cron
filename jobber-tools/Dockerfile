@@ -5,6 +5,7 @@ USER root
 
 RUN apk add --update \
       gpgme \
+      gnupg1 \
       wget \
       jq \
       curl \
@@ -13,9 +14,24 @@ RUN apk add --update \
       zip \
       unzip \
       rsync \
+      libedit \
+      libpq \
+      postgresql \
       git \
       mercurial && \
-    rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
+    # Keep only psql, pg_dump, and pg_restore
+    cp /usr/bin/psql /usr/local/bin && \
+    cp /usr/bin/pg_dump /usr/local/bin && \
+    cp /usr/bin/pg_restore /usr/local/bin && \
+    # Remove obsolete packages
+    apk del \
+      ca-certificates \
+      postgresql &&  \
+    # Clean caches and tmps
+    rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/* && \
+    rm -rf /var/log/*
 
-ENTRYPOINT ["/opt/jobber/docker-entrypoint.sh"]
+COPY imagescripts /opt/jobber-tools
+ENTRYPOINT ["/opt/jobber-tools/docker-entrypoint.sh"]
 CMD ["jobberd"]
