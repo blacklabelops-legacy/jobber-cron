@@ -7,6 +7,7 @@ RUN apk add --update \
       gpgme \
       gnupg1 \
       wget \
+      jq \
       curl \
       tar \
       gzip \
