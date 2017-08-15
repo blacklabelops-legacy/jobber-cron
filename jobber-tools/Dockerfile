@@ -14,7 +14,6 @@ RUN apk add --update \
       zip \
       unzip \
       rsync \
-      jq \
       libedit \
       libpq \
       postgresql \
