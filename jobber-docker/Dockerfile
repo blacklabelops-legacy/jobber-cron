@@ -16,9 +16,6 @@ RUN apk add --update \
     curl -L https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
     chmod +x /usr/local/bin/docker-machine && \
     # Cleanup
-    apk del \
-      curl \
-      py-pip && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
 
 COPY imagescripts /opt/cloud
