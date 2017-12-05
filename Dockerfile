@@ -18,7 +18,8 @@ RUN export JOBBER_HOME=/tmp/jobber && \
       curl \
       wget \
       tzdata \
-      make && \
+      make \
+      musl-dev && \
     mkdir -p $JOBBER_HOME && \
     mkdir -p $JOBBER_LIB && \
     # Install Jobber
