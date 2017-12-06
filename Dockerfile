@@ -1,4 +1,4 @@
-FROM blacklabelops/alpine:3.4
+FROM blacklabelops/alpine:3.6
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 # build parameters
@@ -18,7 +18,8 @@ RUN export JOBBER_HOME=/tmp/jobber && \
       curl \
       wget \
       tzdata \
-      make && \
+      make \
+      musl-dev && \
     mkdir -p $JOBBER_HOME && \
     mkdir -p $JOBBER_LIB && \
     # Install Jobber
