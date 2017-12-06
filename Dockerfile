@@ -12,7 +12,7 @@ RUN export JOBBER_HOME=/tmp/jobber && \
     export CONTAINER_USER=jobber_client && \
     export CONTAINER_GROUP=jobber_client && \
     # Install tools
-    apk add --update \
+    apk add --update --no-cache --virtual .build-deps \
       go \
       git \
       curl \
@@ -37,20 +37,10 @@ RUN export JOBBER_HOME=/tmp/jobber && \
     fi && \
     make -C src/github.com/dshearer/jobber install DESTDIR=$JOBBER_HOME && \
     cp $JOBBER_LIB/bin/* /usr/bin && \
-    # Install Tini Zombie Reaper And Signal Forwarder
-    export TINI_VERSION=0.9.0 && \
-    export TINI_SHA=fa23d1e20732501c3bb8eeeca423c89ac80ed452 && \
-    curl -fsSL https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static -o /bin/tini && \
-    chmod +x /bin/tini && \
     # Cleanup
-    apk del \
-      go \
-      git \
-      curl \
-      wget \
-      make && \
+    apk del .build-deps && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
 
 COPY docker-entrypoint.sh /opt/jobber/docker-entrypoint.sh
-ENTRYPOINT ["/bin/tini","--","/opt/jobber/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini","--","/opt/jobber/docker-entrypoint.sh"]
 CMD ["jobberd"]
