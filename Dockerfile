@@ -1,4 +1,4 @@
-FROM blacklabelops/alpine:3.6
+FROM blacklabelops/alpine:3.7
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 # build parameters
