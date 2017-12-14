@@ -3,6 +3,8 @@ MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 # build parameters
 ARG JOBBER_VERSION=v1.2
+# Image Build Date By Buildsystem
+ARG BUILD_DATE=undefined
 
 RUN export JOBBER_HOME=/tmp/jobber && \
     export JOBBER_LIB=$JOBBER_HOME/lib && \
@@ -40,6 +42,10 @@ RUN export JOBBER_HOME=/tmp/jobber && \
     # Cleanup
     apk del .build-deps && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
+
+# Image Metadata
+LABEL com.blacklabelops.application.jobber.version=$JOBBER_VERSION \
+      com.blacklabelops.image.builddate.jobber=${BUILD_DATE}
 
 COPY docker-entrypoint.sh /opt/jobber/docker-entrypoint.sh
 ENTRYPOINT ["/sbin/tini","--","/opt/jobber/docker-entrypoint.sh"]

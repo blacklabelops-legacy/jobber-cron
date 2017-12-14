@@ -1,6 +1,9 @@
 FROM blacklabelops/jobber
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
+# Image Build Date By Buildsystem
+ARG BUILD_DATE=undefined
+
 USER root
 
 ENV DOCKER_VERSION=17.09.0-ce
@@ -18,6 +21,11 @@ RUN apk add --update \
     chmod +x /usr/local/bin/docker-machine && \
     # Cleanup
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
+
+# Image Metadata
+LABEL com.blacklabelops.application.jobber-docker.docker.version=$DOCKER_VERSION \
+      com.blacklabelops.application.jobber-docker.docker-machine.version=$DOCKER_MACHINE_VERSION \
+      com.blacklabelops.image.builddate.jobber-docker=${BUILD_DATE}
 
 COPY imagescripts /opt/cloud
 ENTRYPOINT ["/opt/cloud/docker-entrypoint.sh"]

@@ -1,6 +1,9 @@
 FROM blacklabelops/jobber
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
+# Image Build Date By Buildsystem
+ARG BUILD_DATE=undefined
+
 USER root
 
 # install Amazon WS Cli
@@ -16,6 +19,9 @@ RUN apk add --update \
     apk del \
       curl && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
+
+# Image Metadata
+LABEL com.blacklabelops.image.builddate.jobber-aws=${BUILD_DATE}
 
 COPY imagescripts /opt/cloud
 ENTRYPOINT ["/opt/cloud/docker-entrypoint.sh"]

@@ -1,6 +1,9 @@
 FROM blacklabelops/jobber
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
+# Image Build Date By Buildsystem
+ARG BUILD_DATE=undefined
+
 USER root
 
 # install tools
@@ -50,6 +53,11 @@ RUN curl -L -o /tmp/docker-${DOCKER_VERSION}.tgz https://download.docker.com/lin
     chmod +x /usr/local/bin/docker-machine && \
     # Cleanup
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
+
+# Image Metadata
+LABEL com.blacklabelops.application.jobber-cloud.docker.version=$DOCKER_VERSION \
+      com.blacklabelops.application.jobber-cloud.docker-machine.version=$DOCKER_MACHINE_VERSION \
+      com.blacklabelops.image.builddate.jobber-cloud=${BUILD_DATE}
 
 COPY imagescripts /opt/cloud
 ENTRYPOINT ["/opt/cloud/docker-entrypoint.sh"]
