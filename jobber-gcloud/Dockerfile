@@ -1,6 +1,9 @@
 FROM blacklabelops/jobber
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
+# Image Build Date By Buildsystem
+ARG BUILD_DATE=undefined
+
 USER root
 
 ENV PATH /opt/google-cloud-sdk/bin:$PATH
@@ -22,6 +25,9 @@ RUN apk add --update \
       unzip \
       py-pip && \
     rm -rf /var/cache/apk/* && rm -rf /tmp/* && rm -rf /var/log/*
+
+# Image Metadata
+LABEL com.blacklabelops.image.builddate.jobber-gcloud=${BUILD_DATE}
 
 COPY imagescripts /opt/cloud
 ENTRYPOINT ["/opt/cloud/docker-entrypoint.sh"]

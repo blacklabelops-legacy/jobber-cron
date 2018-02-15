@@ -1,5 +1,7 @@
 # Dockerized Jobber Cron
 
+[![Open Issues](https://img.shields.io/github/issues/blacklabelops/jobber-cron.svg)](https://github.com/blacklabelops/jobber-cron/issues)
+[![Stars on GitHub](https://img.shields.io/github/stars/blacklabelops/jobber-cron.svg)](https://github.com/cblacklabelops/jobber-cron/stargazers)
 [![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/)
 
 > Docker Container Cron Alternative With Jobber.
@@ -8,12 +10,12 @@
 
 | Bundle | Version | Tags  | Dockerfile | Readme | Example |
 |--------|---------|-------|------------|--------|---------|
-| Jobber  | latest, v1.1 | latest, v1.1 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/README.md) | blacklabelops/jobber:latest
-| Jobber + Tools  | latest | tools | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-tools/Dockerfile) | | blacklabelops/jobber:tools |
-| Jobber + Docker Tools | latest | docker | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/README.md) | blacklabelops/jobber:docker |
-| Jobber + AWS Cli | latest | aws | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/README.md) | blacklabelops/jobber:aws |
-| Jobber + GCE Cli | latest | gce | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:gce |
-| Jobber + All Above | latest | cloud | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:cloud |
+| Jobber  | latest, v1.2 | latest, v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/README.md) | blacklabelops/jobber:latest
+| Jobber + Tools  | latest, v1.2 | tools, tools.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-tools/Dockerfile) | | blacklabelops/jobber:tools |
+| Jobber + Docker Tools | latest | docker, docker.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-docker/README.md) | blacklabelops/jobber:docker |
+| Jobber + AWS Cli | latest, v1.2 | aws, tools.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-aws/README.md) | blacklabelops/jobber:aws |
+| Jobber + GCE Cli | latest, v1.2 | gce, gce.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:gce |
+| Jobber + All Above | latest, v1.2 | cloud, cloud.v1.2 | [Dockerfile](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/Dockerfile) | [Readme](https://github.com/blacklabelops/jobber-cron/blob/master/jobber-gcloud/README.md) | blacklabelops/jobber:cloud |
 
 > AWS = Amazon Web Services, GCE = Google Cloud Engine
 
@@ -126,29 +128,13 @@ As a reminder, cron timetable is like follows:
 1. Token: Month
 1. Token: Day of Week
 
-# Vagrant
-
-Vagrant is fabulous tool for pulling and spinning up virtual machines like docker with containers. I can configure my development and test environment and simply pull it online. And so can you! Install Vagrant and Virtualbox and spin it up. Change into the project folder and build the project on the spot!
-
-~~~~
-$ vagrant up
-$ vagrant ssh
-[vagrant@localhost ~]$ cd /vagrant
-[vagrant@localhost ~]$ docker-compose up
-~~~~
-
-> Type "docker logs jobber" in order to check the invocation.
-
-Vagrant does not leave any docker artifacts on your beloved desktop and the vagrant image can simply be destroyed and repulled if anything goes wrong. Test my project to your heart's content!
-
-First install:
-
-* [Vagrant](https://www.vagrantup.com/)
-* [Virtualbox](https://www.virtualbox.org/)
-
 # Support
 
 Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](http://support.blacklabelops.com)
+
+Maybe no one has ever told you, but munich developers run on beer! If you like my work, share a beer!
+
+[![BeerMe](https://raw.githubusercontent.com/ikkez/Beer-Donation-Button/gh-pages/img/beer_donation_button_single.png)](https://www.paypal.me/donateblacklabelops)
 
 # References
 
