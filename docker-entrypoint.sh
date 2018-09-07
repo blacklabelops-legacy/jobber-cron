@@ -2,7 +2,11 @@
 
 set -o errexit
 
-configfile="/root/.jobber"
+if [ "$EUID" -eq 0 ]; then
+  configfile="/root/.jobber"
+else
+  configfile="/home/$(whoami)/.jobber"
+fi
 
 function pipeEnvironmentVariables() {
   local environmentfile="/etc/profile.d/jobber.sh"
