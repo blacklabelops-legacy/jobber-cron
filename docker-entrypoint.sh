@@ -56,11 +56,11 @@ _EOF_
   onError: ${it_job_on_error}
   notifyOnError: ${it_job_notify_error}
   notifyOnFailure: ${it_job_notify_failure}
-
 _EOF_
   done
 fi
 
+echo "${configfile}:"
 cat ${configfile}
 
 if [ "$1" = 'jobberd' ]; then
