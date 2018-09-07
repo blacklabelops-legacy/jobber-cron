@@ -61,7 +61,7 @@ cat ${configfile}
 
 if [ "$1" = 'jobberd' ]; then
   pipeEnvironmentVariables
-  exec jobberd
+  exec /usr/local/libexec/jobberrunner ${configfile}
 fi
 
 exec "$@"
