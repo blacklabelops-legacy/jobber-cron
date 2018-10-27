@@ -1,8 +1,8 @@
-FROM blacklabelops/alpine:3.7
+FROM blacklabelops/alpine:3.8
 MAINTAINER Steffen Bleul <sbl@blacklabelops.com>
 
 # build parameters
-ARG JOBBER_VERSION=v1.2
+ARG JOBBER_VERSION=v1.3.4
 # Image Build Date By Buildsystem
 ARG BUILD_DATE=undefined
 
@@ -21,7 +21,8 @@ RUN export JOBBER_HOME=/tmp/jobber && \
       wget \
       tzdata \
       make \
-      musl-dev && \
+      musl-dev \
+      rsync && \
     mkdir -p $JOBBER_HOME && \
     mkdir -p $JOBBER_LIB && \
     # Install Jobber
