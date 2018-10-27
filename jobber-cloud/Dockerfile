@@ -7,7 +7,7 @@ ARG BUILD_DATE=undefined
 USER root
 
 # install tools
-RUN apk add --update \
+RUN apk add --update --upgrade --no-cache \
       gnupg \
       wget \
       curl \
@@ -20,13 +20,13 @@ RUN apk add --update \
       py-pip \
       git \
       mercurial && \
-    pip install --upgrade pip
+    pip install --upgrade --no-cache-dir pip
 
 # Cloud Envs
 ENV SCRIPT_HOME=/opt/cloud
 
 # install Amazon WS Cli
-RUN pip install awscli && \
+RUN pip install --upgrade --no-cache-dir  awscli && \
     curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest && \
     chmod +x /usr/local/bin/ecs-cli
 
@@ -37,10 +37,10 @@ RUN mkdir -p /opt/gcloud && \
     unzip /tmp/google-cloud-sdk.zip -d /opt/ && \
     /opt/google-cloud-sdk/install.sh --usage-reporting=true --path-update=true --bash-completion=true --rc-path=/opt/gcloud/.bashrc --disable-installation-options && \
     gcloud --quiet components update alpha beta app-engine-python kubectl bq core gsutil gcloud && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* 
 
 # install tutum
-RUN pip install tutum
+RUN pip install --upgrade --no-cache-dir tutum
 
 # install Docker cli
 ENV DOCKER_VERSION=17.09.0-ce

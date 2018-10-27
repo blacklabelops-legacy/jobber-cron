@@ -7,7 +7,7 @@ ARG BUILD_DATE=undefined
 USER root
 
 # install Amazon WS Cli
-RUN apk add --update \
+RUN apk add --update --upgrade --no-cache \
       gpgme \
       curl \
       py-pip && \
