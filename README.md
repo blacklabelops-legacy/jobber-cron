@@ -1,9 +1,5 @@
 # Dockerized Jobber Cron
 
-[![Open Issues](https://img.shields.io/github/issues/blacklabelops/jobber-cron.svg)](https://github.com/blacklabelops/jobber-cron/issues)
-[![Stars on GitHub](https://img.shields.io/github/stars/blacklabelops/jobber-cron.svg)](https://github.com/cblacklabelops/jobber-cron/stargazers)
-[![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/jobber.svg)](https://hub.docker.com/r/blacklabelops/jobber/)
-
 > Docker Container Cron Alternative With Jobber.
 
 ## Supported tags and respective Dockerfile links
